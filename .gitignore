@@ -12,3 +12,6 @@ build/
 
 # User generated files
 decision_*.txt
+
+# Builds
+macos_app/
