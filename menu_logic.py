@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QMessageBox, QFileDialog, QMenu
-from PySide6.QtGui import QAction  # <--- Теперь это на отдельной строке и работает!
+from PySide6.QtGui import QAction
 from translations import TEXTS
 import re
 
@@ -12,8 +12,7 @@ class MenuManager:
         self.setup_menu()
         self.setup_connections()
         
-        # ВАЖНО: При запуске сразу применяем русский язык, 
-        # чтобы проставились плейсхолдеры
+        # Defoult Language
         self.change_language("ru")
 
     def setup_menu(self):
@@ -29,7 +28,7 @@ class MenuManager:
         lang_menu.addAction(action_en)
 
     def setup_connections(self):
-        # Проверяем наличие кнопок перед подключением
+        # Check btns before switch Language
         if hasattr(self.window, 'action_how_it_works'):
             self.window.action_how_it_works.triggered.connect(self.show_instruction)
         if hasattr(self.window, 'action_open'):
@@ -41,12 +40,12 @@ class MenuManager:
         
         t = TEXTS[lang_code]
 
-        # 1. Основной интерфейс
+        # 1. Main UI
         self.window.setWindowTitle(t["window_title"])
         self.window.btn_save.setText(t["btn_save"])
         
-        # Обновляем группы
-        # Используем findChild, чтобы точно найти объекты, даже если QUiLoader их не привязал
+        # Upd groups
+        # Use findChild to find objects even if QUiLoader has not linked them
         box_1 = self.window.findChild(object, "box_1")
         if box_1: box_1.setTitle(t["box_1"])
 
@@ -59,23 +58,23 @@ class MenuManager:
         box_4 = self.window.findChild(object, "box_4")
         if box_4: box_4.setTitle(t["box_4"])
         
-        # 2. Плейсхолдеры
+        # 2. Placeholders
         self.window.input_pp.setPlaceholderText(t["ph_1"])
         self.window.input_pm.setPlaceholderText(t["ph_2"])
         self.window.input_mp.setPlaceholderText(t["ph_3"])
         self.window.input_mm.setPlaceholderText(t["ph_4"])
         
-        # 3. МЕНЮ (Самое важное!)
-        # Мы ищем объект типа QMenu с именем "menu_root"
+        # 3. Menu
+        # We are looking for an object of type QMenu with the name "menu_root".
         menu_root = self.window.findChild(QMenu, "menu_root")
         if menu_root:
             menu_root.setTitle(t["menu_main_title"])
         else:
-            # Если не нашел по имени menu_root, попробуем найти просто первое попавшееся меню
-            # Это страховка на случай проблем с именами
+            # If you cannot find it by the name menu_root, try searching for the first menu you come across.
+            # This is insurance in case of problems with names.
             pass
 
-        # Пункты внутри меню
+        # Menu options
         if hasattr(self.window, 'action_open'):
             self.window.action_open.setText(t["menu_open"])
             
@@ -106,7 +105,7 @@ class MenuManager:
                 self.window.input_mp.setPlainText(clean(parts[3]))
                 self.window.input_mm.setPlainText(clean(parts[4]))
                 
-                # Используем сообщение из словаря для заголовка
+                # Use the message from the dictionary for the title
                 msg_title = TEXTS[self.current_lang]["saved_title"]
                 QMessageBox.information(self.window, msg_title, "OK")
         except Exception:

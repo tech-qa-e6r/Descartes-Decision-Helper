@@ -6,12 +6,12 @@ from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile, QIODevice
 
 from menu_logic import MenuManager
-from translations import TEXTS  # <--- Импортируем тексты
+from translations import TEXTS  # <--- Importing texts
 
 def main():
     app = QApplication(sys.argv)
 
-    # 1. ЗАГРУЗКА ИНТЕРФЕЙСА
+    # 1. INTERFACE DOWNLOAD
     ui_file_name = "ui.ui" 
     ui_file = QFile(ui_file_name)
     if not ui_file.open(QIODevice.ReadOnly):
@@ -25,15 +25,15 @@ def main():
         print(loader.errorString())
         sys.exit(-1)
 
-    # --- МЕНЮ ---
+    # --- MENU ---
     menu = MenuManager(window)
     # ------------------------
 
-    # 2. ЛОГИКА СОХРАНЕНИЯ
+    # 2. LOGIC OF PRESERVATION
     def save_to_obsidian():
-        # Получаем текущий язык из окна (его меняет MenuManager)
+        # Get the current language from the window (it is changed by MenuManager)
         lang = getattr(window, 'current_lang', 'ru') 
-        t = TEXTS[lang] # Словарь текущего языка
+        t = TEXTS[lang] # Current language dictionary
 
         try:
             text_pp = window.input_pp.toPlainText()
@@ -59,7 +59,7 @@ def main():
         total_action = score_pp + score_mm
         total_status_quo = score_pm + score_mp
 
-        # ИСПОЛЬЗУЕМ ПЕРЕВОДЫ ДЛЯ ВЕРДИКТА
+        # WE USE TRANSLATIONS FOR THE VERDICT
         if total_action > total_status_quo:
             verdict_text = t["verdict_do"]
         elif total_status_quo > total_action:
@@ -67,12 +67,12 @@ def main():
         else:
             verdict_text = t["verdict_draw"]
 
-        # Собираем строку вердикта
+        # Putting together the verdict line
         final_verdict = f"{verdict_text} ({total_action} vs {total_status_quo})"
 
         timestamp = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
         
-        # Формируем файл с использованием переводов заголовков
+        # Generate a file using header translations
         content = f"""# {t['file_header']} {timestamp}
 **ITOG:** {final_verdict}
 
@@ -105,7 +105,7 @@ def main():
         with open(filename, "w", encoding="utf-8") as f:
             f.write(content)
         
-        # Сообщение об успехе на нужном языке
+        # Success message in the desired language
         QMessageBox.information(window, t["saved_title"], f"{final_verdict}\n\n{t['saved_body']}:\n{filename}")
 
     try:
