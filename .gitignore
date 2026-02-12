@@ -1,1 +1,14 @@
+# Python artifacts
+__pycache__/
+*.pyc
+
+# PyInstaller build artifacts
+dist/
+build/
+*.spec
+
+# macOS system files
+.DS_Store
+
+# User generated files
 decision_*.txt

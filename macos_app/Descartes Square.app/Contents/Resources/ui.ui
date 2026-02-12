@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DS</class>
+ <widget class="QMainWindow" name="DS">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>801</width>
+    <height>523</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Квадрат Декарта</string>
+  </property>
+  <property name="accessibleName">
+   <string/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Этот блок автоматически покрасит ВСЕ четыре квадрата */
+QGroupBox {
+    border: none;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #e0e0e0;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 0px;
+    padding: 0 5px;
+}
+
+/* Дополнительно: уберем рамку у полей ввода внутри, чтобы было совсем чисто */
+QPlainTextEdit {
+    border: 1px solid #3d3d3d; /* Тонкая рамка или none, если хочешь совсем плоско */
+    background-color: #2b2b2b;
+    border-radius: 4px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>3</number>
+    </property>
+    <property name="topMargin">
+     <number>3</number>
+    </property>
+    <property name="rightMargin">
+     <number>3</number>
+    </property>
+    <property name="bottomMargin">
+     <number>3</number>
+    </property>
+    <property name="horizontalSpacing">
+     <number>5</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="box_1">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Что будет, если это произойдет?</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QPlainTextEdit" name="input_pp">
+         <property name="placeholderText">
+          <string>Положительные последствия от принятого решения — в ответах на этот вопрос кроется ваша мотивация</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="box_3">
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Чего НЕ будет, если это произойдет?</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QPlainTextEdit" name="input_mp">
+         <property name="placeholderText">
+          <string>У любого решения есть не только плюсы, но и минусы — вопрос поможет понять, чего вы лишитесь, если гипотеза станет реальностью.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QGroupBox" name="box_4">
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Чего НЕ будет, если это НЕ произойдет?</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QPlainTextEdit" name="input_mm">
+         <property name="placeholderText">
+          <string>Упущенные возможности — то, о чем можно забыть в случае отказа от гипотезы.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="box_2">
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>Что будет, если это НЕ произойдет?</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QPlainTextEdit" name="input_pm">
+         <property name="placeholderText">
+          <string>Нынешнее положение дел — плюсы отказа от потенциально возможного решения.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="btn_save">
+      <property name="minimumSize">
+       <size>
+        <width>110</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>110</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* 1. Обычное состояние (Спокойное) */
+QPushButton {
+    background-color: #404040;  /* серый цвет (как в iOS) */
+    color: white;               /* Белый текст */
+    border-radius: 6px;         /* Скругление углов */
+    font-size: 14px;            /* Размер шрифта */
+    font-weight: bold;          /* Жирный текст */
+    border: 1px solid #1b4300;  /* Граница того же цвета */
+    padding: 8px 16px;          /* Отступы внутри кнопки */
+}
+
+/* 2. Наведение мыши (Светлее) */
+QPushButton:hover {
+    background-color: #4a4a4a;  /* темный оранж */
+    border: 1px solid #1b4300;
+}
+
+/* 3. Нажатие (Темнее) */
+QPushButton:pressed {
+    background-color: #364031;  /* Тяркий оранж */
+    border: 1px solid #495843;
+}</string>
+      </property>
+      <property name="text">
+       <string>Сохранить</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>801</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_root">
+    <property name="title">
+     <string>Меню</string>
+    </property>
+    <addaction name="action_open"/>
+    <addaction name="separator"/>
+    <addaction name="action_how_it_works"/>
+   </widget>
+   <addaction name="menu_root"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_how_it_works">
+   <property name="text">
+    <string>Как это работает?</string>
+   </property>
+  </action>
+  <action name="action_open">
+   <property name="text">
+    <string>Открыть</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

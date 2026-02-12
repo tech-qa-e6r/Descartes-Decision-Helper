@@ -27,4 +27,5 @@ To create a standalone executable (`.exe`, `.app`, or binary) so that others can
 
 ### 1. Install PyInstaller
 ```bash
-pip install pyinstaller
+python -m PyInstaller --noconsole --onedir --add-data "ui.ui:." main.py
+```
