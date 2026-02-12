@@ -1,4 +1,5 @@
 import sys
+import os
 import datetime
 import re
 from PySide6.QtWidgets import QApplication, QMessageBox
@@ -8,22 +9,30 @@ from PySide6.QtCore import QFile, QIODevice
 from menu_logic import MenuManager
 from translations import TEXTS  # <--- Importing texts
 
+def resource_path(relative_path):
+    # Obtains the absolute path to resources (required for PyInstaller)
+    try:
+        # PyInstaller creates a temporary folder named _MEIxxxx
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
 def main():
     app = QApplication(sys.argv)
 
     # 1. INTERFACE DOWNLOAD
-    ui_file_name = "ui.ui" 
-    ui_file = QFile(ui_file_name)
+    ui_file_path = resource_path("ui.ui") 
+    ui_file = QFile(ui_file_path) # Используем исправленную переменную
+    
     if not ui_file.open(QIODevice.ReadOnly):
-        print(f"Ошибка: Не могу найти файл {ui_file_name}")
+        # Печатаем ui_file_path, чтобы в терминале видеть, где он искал файл
+        print(f"Ошибка: Не могу найти файл по пути {ui_file_path}")
         sys.exit(-1)
+        
     loader = QUiLoader()
     window = loader.load(ui_file)
     ui_file.close()
-
-    if not window:
-        print(loader.errorString())
-        sys.exit(-1)
 
     # --- MENU ---
     menu = MenuManager(window)
